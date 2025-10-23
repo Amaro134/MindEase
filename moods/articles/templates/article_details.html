@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ article.title }} | MindEase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-teal-700 text-white shadow-lg">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
+      <ul class="flex space-x-6">
+        <li><a href="{% url 'article_list' %}" class="hover:text-teal-200">← Back to Articles</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Article Detail -->
+  <section class="py-16 bg-white flex-grow">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <h1 class="text-4xl font-bold text-teal-600 mb-4">{{ article.title }}</h1>
+      <p class="text-gray-500 mb-6">By {{ article.author }} · {{ article.created_at|date:"F j, Y" }}</p>
+      {% if article.image %}
+        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="rounded-lg mb-6">
+      {% endif %}
+      <p class="text-gray-800 leading-relaxed">{{ article.content|linebreaks }}</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-teal-700 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; {{ year|default:2025 }} MindEase. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

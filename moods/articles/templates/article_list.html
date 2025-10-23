@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindEase | Mindfulness Articles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+ <nav class="bg-teal-700 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
+    <ul class="flex space-x-6 items-center">
+      <li><a href="{% url 'homePage' %}" class="hover:text-teal-200">Home</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-teal-200">About</a></li>
+      <li><a href="{% url 'log_mood' %}" class="hover:text-teal-200">Mood Tracker</a></li>
+      <li><a href="{% url 'dashboard' %}" class="hover:text-teal-200">Dashboard</a></li>
+
+      <!-- Dropdown for Resources -->
+      <li class="relative group">
+        <a href="#" class="hover:text-teal-200 font-semibold">Resources ▾</a>
+        <ul class="absolute left-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+          <li>
+            <a href="{% url 'resources' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-t-lg">Resources</a>
+          </li>
+          <li>
+            <a href="{% url 'article_list' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Articles</a>
+          </li>
+          <li>
+            <a href="{% url 'mood_tips' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Mood Tips</a>
+          </li>
+          <li>
+            <a href="{% url 'content' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Videos & Podcasts</a>
+          </li>
+          <li>
+            <a href="{% url 'crisis_support' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Hotlines & Support</a>
+          </li>
+        </ul>
+      </li>
+
+      <li><a href="{% url 'contact' %}" class="hover:text-teal-200">Contact</a></li>
+      <li>
+        <a href="{% url 'logout' %}" class="bg-teal-300 text-white px-4 py-2 rounded-md hover:bg-teal-400 transition">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+  <!-- Article List Section -->
+  <section class="py-16 bg-gray-50 flex-grow">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-12 text-center text-teal-600">Mindfulness Articles</h2>
+
+      {% if articles %}
+      <div class="grid md:grid-cols-3 gap-8">
+        {% for article in articles %}
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden flex flex-col">
+          {% if article.image %}
+          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="h-48 w-full object-cover">
+          {% endif %}
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-semibold mb-2">{{ article.title }}</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                By {{ article.author.get_full_name|default:article.author.username }} | {{ article.created_at|date:"M d, Y" }}
+              </p>
+            </div>
+            <a href="{% url 'article_detail' article.pk %}" class="mt-auto text-teal-600 font-medium hover:underline">Read more →</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-center text-gray-500 text-lg">No articles have been published yet.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-teal-700 text-white py-6 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; {{ year|default:2025 }} MindEase. All rights reserved.</p>
+      <div class="mt-2 space-x-4">
+        <a href="#" class="hover:text-gray-200">Facebook</a>
+        <a href="#" class="hover:text-gray-200">Instagram</a>
+        <a href="#" class="hover:text-gray-200">Twitter</a>
+        <a href="#" class="hover:text-gray-200">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

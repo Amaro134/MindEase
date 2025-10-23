@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crisis Resources | MindEase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-teal-50 text-teal-900">
+
+  <!-- Navbar -->
+ <nav class="bg-teal-700 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
+    <ul class="flex space-x-6 items-center">
+      <li><a href="{% url 'homePage' %}" class="hover:text-teal-200">Home</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-teal-200">About</a></li>
+      <li><a href="{% url 'log_mood' %}" class="hover:text-teal-200">Mood Tracker</a></li>
+      <li><a href="{% url 'dashboard' %}" class="hover:text-teal-200">Dashboard</a></li>
+
+      <!-- Dropdown for Resources -->
+      <li class="relative group">
+        <a href="#" class="hover:text-teal-200 font-semibold">Resources ▾</a>
+        <ul class="absolute left-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+          <li>
+            <a href="{% url 'resources' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-t-lg">Resources</a>
+          </li>
+          <li>
+            <a href="{% url 'article_list' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Articles</a>
+          </li>
+          <li>
+            <a href="{% url 'mood_tips' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Mood Tips</a>
+          </li>
+          <li>
+            <a href="{% url 'content' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Videos & Podcasts</a>
+          </li>
+          <li>
+            <a href="{% url 'crisis_support' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Hotlines & Support</a>
+          </li>
+        </ul>
+      </li>
+
+      <li><a href="{% url 'contact' %}" class="hover:text-teal-200">Contact</a></li>
+      <li>
+        <a href="{% url 'logout' %}" class="bg-teal-300 text-white px-4 py-2 rounded-md hover:bg-teal-400 transition">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <!-- Hero Section -->
+  <section class="bg-teal-100 py-16 text-center">
+    <h1 class="text-4xl font-bold text-teal-900 mb-4">Crisis Resources</h1>
+    <p class="text-teal-800 text-lg md:text-xl max-w-2xl mx-auto">
+      Immediate support and crisis management resources for urgent mental health situations.
+    </p>
+  </section>
+
+  <!-- Crisis Info Section -->
+  <section class="container mx-auto py-12 px-4 max-w-4xl text-teal-800 space-y-6">
+    <p>
+      Life can sometimes feel overwhelming. During urgent or dangerous situations, it's important to know you are not alone. MindEase provides immediate resources to help you manage a crisis safely.
+    </p>
+    <p>
+      These resources connect you with trained professionals and hotlines who can provide guidance, support, and intervention when you need it most.
+    </p>
+
+    <h2 class="text-2xl font-bold text-teal-900 mt-8 mb-4">Immediate Help</h2>
+    <ul class="list-disc list-inside space-y-2">
+      <li>24/7 Mental Health Helplines for immediate support.</li>
+      <li>Local crisis centers and counseling services.</li>
+      <li>Online chat and text support for urgent emotional assistance.</li>
+      <li>Guidance on creating a personal safety plan in moments of distress.</li>
+    </ul>
+
+    <div class="text-center mt-8">
+      <a href="crisis_support" class="text-white bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold">
+        Access Crisis Support
+      </a>
+    </div>
+  </section>
+
+  <!-- Additional Resources Cards -->
+  <section class="container mx-auto my-12 px-4">
+    <h2 class="text-3xl font-bold text-teal-900 mb-8 text-center">Other Helpful Resources</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-teal-800 mb-2">Mindfulness Articles</h3>
+        <p class="text-teal-700 mb-4">Read curated articles to improve mental wellness and self-care routines.</p>
+        <a href="{% url 'article_list' %}" class="text-white bg-teal-700 px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors">Read More</a>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-teal-800 mb-2">Tools & Apps</h3>
+        <p class="text-teal-700 mb-4">Explore mood trackers, meditation apps, and other helpful mental health tools.</p>
+        <a href="{% url 'tools_apps' %}" class="text-white bg-teal-700 px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors">Explore</a>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-teal-800 mb-2">Videos & Podcasts</h3>
+        <p class="text-teal-700 mb-4">Watch or listen to mental health content and wellness guidance from experts.</p>
+        <a href="#" class="text-white bg-teal-700 px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors">Watch/Listen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-teal-700 text-white py-8 mt-12">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
+      <p>&copy; 2025 MindEase. All rights reserved.</p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <a href="#" class="hover:text-teal-200">Facebook</a>
+        <a href="#" class="hover:text-teal-200">Instagram</a>
+        <a href="#" class="hover:text-teal-200">Twitter</a>
+        <a href="#" class="hover:text-teal-200">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

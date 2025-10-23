@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindEase - Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+ <nav class="bg-teal-700 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
+    <ul class="flex space-x-6 items-center">
+      <li><a href="{% url 'homePage' %}" class="hover:text-teal-200">Home</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-teal-200">About</a></li>
+      <li><a href="{% url 'log_mood' %}" class="hover:text-teal-200">Mood Tracker</a></li>
+      <li><a href="{% url 'dashboard' %}" class="hover:text-teal-200">Dashboard</a></li>
+
+      <!-- Dropdown for Resources -->
+      <li class="relative group">
+        <a href="#" class="hover:text-teal-200 font-semibold">Resources ▾</a>
+        <ul class="absolute left-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+          <li>
+            <a href="{% url 'resources' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-t-lg">Resources</a>
+          </li>
+          <li>
+            <a href="{% url 'article_list' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Articles</a>
+          </li>
+          <li>
+            <a href="{% url 'mood_tips' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Mood Tips</a>
+          </li>
+          <li>
+            <a href="{% url 'content' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Videos & Podcasts</a>
+          </li>
+          <li>
+            <a href="{% url 'crisis_support' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Hotlines & Support</a>
+          </li>
+        </ul>
+      </li>
+
+      <li><a href="{% url 'contact' %}" class="hover:text-teal-200">Contact</a></li>
+      <li>
+        <a href="{% url 'logout' %}" class="bg-teal-300 text-white px-4 py-2 rounded-md hover:bg-teal-400 transition">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+  <!-- Main Dashboard Content -->
+  <main class="container mx-auto my-12 px-4 flex-1">
+
+    <!-- Welcome Section -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+      <h2 class="text-2xl font-bold text-teal-800">Welcome back, {{ user.full_name }}!</h2>
+      <p class="text-gray-600 mt-2">Here's a summary of your mood activity.</p>
+    </div>
+
+    <!-- Mood Summary Cards -->
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-teal-700 text-white rounded-xl p-6 shadow">
+        <h3 class="text-lg font-semibold">Most Recent Mood</h3>
+        {% if latest_mood %}
+        <p class="text-2xl mt-2">{{ latest_mood.mood }}</p>
+        <p class="text-gray-200 mt-1 text-sm">{{ latest_mood.created_at|date:"F j, Y" }}</p>
+        {% else %}
+        <p class="text-gray-200 mt-2">No entries yet</p>
+        {% endif %}
+      </div>
+
+      <div class="bg-teal-500 text-white rounded-xl p-6 shadow">
+        <h3 class="text-lg font-semibold">Total Entries</h3>
+        <p class="text-2xl mt-2">{{ total_entries }}</p>
+      </div>
+
+      <div class="bg-teal-600 text-white rounded-xl p-6 shadow">
+        <h3 class="text-lg font-semibold">Most Frequent Mood</h3>
+        {% if frequent_mood %}
+        <p class="text-2xl mt-2">{{ frequent_mood }}</p>
+        {% else %}
+        <p class="text-gray-200 mt-2">N/A</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Recent Entries Table -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+      <h3 class="text-xl font-bold text-teal-800 mb-4">Recent Mood Entries</h3>
+      {% if recent_entries %}
+      <ul class="divide-y divide-gray-200">
+        {% for entry in recent_entries %}
+        <li class="py-4 flex justify-between items-center">
+          <div>
+            <p class="font-semibold text-teal-700">{{ entry.mood }}</p>
+            {% if entry.note %}
+            <p class="text-gray-600">{{ entry.note }}</p>
+            {% endif %}
+          </div>
+          <p class="text-gray-400 text-sm">{{ entry.created_at|date:"F j, Y, g:i a" }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="text-gray-500">You have no mood entries yet.</p>
+      {% endif %}
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex flex-col md:flex-row gap-4 mb-12">
+      <a href="{% url 'log_mood' %}" class="bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 px-6 rounded-lg text-center">
+        Log New Mood
+      </a>
+      <a href="{% url 'resources' %}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg text-center">
+        Explore Resources
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-teal-700 text-white mt-auto py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; {{ year }} MindEase. All rights reserved.</p>
+      <div class="mt-2 space-x-4">
+        <a href="#" class="hover:text-gray-200">Facebook</a>
+        <a href="#" class="hover:text-gray-200">Instagram</a>
+        <a href="#" class="hover:text-gray-200">Twitter</a>
+        <a href="#" class="hover:text-gray-200">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

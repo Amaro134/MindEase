@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindEase | Mental Wellness & Mindfulness</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+ <nav class="bg-teal-700 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
+    <ul class="flex space-x-6 items-center">
+      <li><a href="{% url 'homePage' %}" class="hover:text-teal-200">Home</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-teal-200">About</a></li>
+      <li><a href="{% url 'log_mood' %}" class="hover:text-teal-200">Mood Tracker</a></li>
+      <li><a href="{% url 'dashboard' %}" class="hover:text-teal-200">Dashboard</a></li>
+
+      <!-- Dropdown for Resources -->
+      <li class="relative group">
+        <a href="#" class="hover:text-teal-200 font-semibold">Resources ▾</a>
+        <ul class="absolute left-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+          <li>
+            <a href="{% url 'resources' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-t-lg">Resources</a>
+          </li>
+          <li>
+            <a href="{% url 'article_list' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Articles</a>
+          </li>
+          <li>
+            <a href="{% url 'mood_tips' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Mood Tips</a>
+          </li>
+          <li>
+            <a href="{% url 'content' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Videos & Podcasts</a>
+          </li>
+          <li>
+            <a href="{% url 'crisis_support' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Hotlines & Support</a>
+          </li>
+        </ul>
+      </li>
+
+      <li><a href="{% url 'contact' %}" class="hover:text-teal-200">Contact</a></li>
+      <li>
+        <a href="{% url 'logout' %}" class="bg-teal-300 text-white px-4 py-2 rounded-md hover:bg-teal-400 transition">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+  <!-- Hero Section -->
+  <section class="bg-teal-300 text-gray text-center py-20 px-6">
+    <h1 class="text-5xl font-extrabold mb-4">Welcome to MindEase</h1>
+    <p class="text-lg max-w-2xl mx-auto mb-8">Your companion for emotional well-being and mindfulness.  
+      Track your moods, reflect on your journey, and embrace a calmer, happier you.</p>
+    <a href="{% url 'about' %}" class="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-md hover:bg-gray-100 transition">Get Started</a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="max-w-7xl mx-auto py-16 px-6 grid md:grid-cols-3 gap-10">
+    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
+      <img src="{% static 'images/8 Ways to Find Contentment in Your 20s and 30s.jpeg' %}" alt="Mood Tracking" class="w-20 mx-auto mb-4">
+      <h3 class="text-xl font-semibold text-indigo-600 mb-3 text-center">Mood Tracking</h3>
+      <p class="text-center">Record your emotions daily and visualize patterns that help you understand yourself better.</p>
+    </div>
+
+    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
+      <img src="{% static 'images/download (8).jpeg' %}" alt="Mindfulness" class="w-20 mx-auto mb-4">
+      <h3 class="text-xl font-semibold text-indigo-600 mb-3 text-center">Mindfulness</h3>
+      <p class="text-center">Practice guided breathing and meditation to relax your mind and body.</p>
+    </div>
+
+    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
+      <img src="{% static 'images/Engaged Audience Listening.jpeg' %}" alt="Community" class="w-20 mx-auto mb-4">
+      <h3 class="text-xl font-semibold text-indigo-600 mb-3 text-center">Community</h3>
+      <p class="text-center">Join others in a safe, supportive environment where mental wellness matters most.</p>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-teal-300 text-white py-16 text-center">
+    <h2 class="text-3xl font-semibold mb-4">Start your wellness journey today</h2>
+    <p class="mb-8 text-lg">Take charge of your emotions and experience peace of mind with MindEase.</p>
+    <a href="{% url 'log_mood' %}" class="bg-white text-indigo-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Join Now</a>
+  </section>
+
+  <!-- Footer -->
+   <footer class="bg-teal-700 text-white mt-auto py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; {{ year }} MindEase. All rights reserved.</p>
+      <div class="mt-2 space-x-4">
+        <a href="#" class="hover:text-gray-200">Facebook</a>
+        <a href="#" class="hover:text-gray-200">Instagram</a>
+        <a href="#" class="hover:text-gray-200">Twitter</a>
+        <a href="#" class="hover:text-gray-200">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+
+</body>
+</html>

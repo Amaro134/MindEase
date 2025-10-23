@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crisis Support | MindEase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-teal-50 text-teal-900">
+
+  
+  <!-- Navbar -->
+ <nav class="bg-teal-700 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
+    <ul class="flex space-x-6 items-center">
+      <li><a href="{% url 'homePage' %}" class="hover:text-teal-200">Home</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-teal-200">About</a></li>
+      <li><a href="{% url 'log_mood' %}" class="hover:text-teal-200">Mood Tracker</a></li>
+      <li><a href="{% url 'dashboard' %}" class="hover:text-teal-200">Dashboard</a></li>
+
+      <!-- Dropdown for Resources -->
+      <li class="relative group">
+        <a href="#" class="hover:text-teal-200 font-semibold">Resources ▾</a>
+        <ul class="absolute left-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+          <li>
+            <a href="{% url 'resources' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-t-lg">Resources</a>
+          </li>
+          <li>
+            <a href="{% url 'article_list' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Articles</a>
+          </li>
+          <li>
+            <a href="{% url 'mood_tips' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Mood Tips</a>
+          </li>
+          <li>
+            <a href="{% url 'content' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Videos & Podcasts</a>
+          </li>
+          <li>
+            <a href="{% url 'crisis_support' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Hotlines & Support</a>
+          </li>
+        </ul>
+      </li>
+
+      <li><a href="{% url 'contact' %}" class="hover:text-teal-200">Contact</a></li>
+      <li>
+        <a href="{% url 'logout' %}" class="bg-teal-300 text-white px-4 py-2 rounded-md hover:bg-teal-400 transition">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <!-- Hero Section -->
+  <section class="bg-red-100 py-16 text-center">
+    <h1 class="text-4xl font-bold text-red-700 mb-4">Get Immediate Help</h1>
+    <p class="text-red-800 text-lg md:text-xl max-w-2xl mx-auto">
+      If you or someone you know is in danger or experiencing a mental health crisis, reach out for help immediately.
+    </p>
+  </section>
+
+  <!-- Support Hotlines Section -->
+  <section class="container mx-auto py-12 px-4 max-w-4xl space-y-10">
+    
+    <div class="text-center">
+      <h2 class="text-2xl font-bold text-teal-900 mb-4">🇺🇬 Uganda Crisis Support</h2>
+      <ul class="text-teal-800 text-lg space-y-2">
+        <li><strong>Uganda Suicide Prevention Helpline:</strong> +256 788 662 663</li>
+        <li><strong>Mental Health Uganda:</strong> +256 414 532 483 / +256 772 539 551</li>
+        <li><strong>Butabika Hospital Emergency:</strong> +256 414 504 376</li>
+        <li><strong>Uganda Police Emergency:</strong> 999 or 112</li>
+      </ul>
+    </div>
+
+    <div class="text-center">
+      <h2 class="text-2xl font-bold text-teal-900 mb-4">🌍 International Hotlines</h2>
+      <ul class="text-teal-800 text-lg space-y-2">
+        <li><strong>Suicide Crisis Helpline (Global):</strong> <a href="https://findahelpline.com" class="text-teal-700 underline hover:text-teal-900" target="_blank">findahelpline.com</a></li>
+        <li><strong>US - 988 Suicide & Crisis Lifeline:</strong> Call or text <strong>988</strong></li>
+        <li><strong>UK - Samaritans:</strong> 116 123</li>
+        <li><strong>Canada - Talk Suicide Canada:</strong> 1-833-456-4566</li>
+        <li><strong>India - AASRA Helpline:</strong> 91-9820466726</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-100 p-6 rounded-xl shadow-lg text-center">
+      <h2 class="text-2xl font-bold text-teal-900 mb-4">If You Feel Unsafe</h2>
+      <p class="text-teal-800 text-lg mb-4">
+        If you are in danger or fear for your safety, please contact local emergency services right away.
+      </p>
+      <a href="tel:999" class="text-white bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 transition font-semibold">
+        Call Emergency Services
+      </a>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-teal-700 text-white py-8 mt-12">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
+      <p>&copy; 2025 MindEase. All rights reserved.</p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <a href="#" class="hover:text-teal-200">Facebook</a>
+        <a href="#" class="hover:text-teal-200">Instagram</a>
+        <a href="#" class="hover:text-teal-200">Twitter</a>
+        <a href="#" class="hover:text-teal-200">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

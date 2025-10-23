@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindEase | Mood Tracking Tips</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+
+  <!-- Navbar -->
+ <nav class="bg-teal-700 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
+    <ul class="flex space-x-6 items-center">
+      <li><a href="{% url 'homePage' %}" class="hover:text-teal-200">Home</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-teal-200">About</a></li>
+      <li><a href="{% url 'log_mood' %}" class="hover:text-teal-200">Mood Tracker</a></li>
+      <li><a href="{% url 'dashboard' %}" class="hover:text-teal-200">Dashboard</a></li>
+
+      <!-- Dropdown for Resources -->
+      <li class="relative group">
+        <a href="#" class="hover:text-teal-200 font-semibold">Resources ▾</a>
+        <ul class="absolute left-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+          <li>
+            <a href="{% url 'resources' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-t-lg">Resources</a>
+          </li>
+          <li>
+            <a href="{% url 'article_list' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Articles</a>
+          </li>
+          <li>
+            <a href="{% url 'mood_tips' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Mood Tips</a>
+          </li>
+          <li>
+            <a href="{% url 'content' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Videos & Podcasts</a>
+          </li>
+          <li>
+            <a href="{% url 'crisis_support' %}" class="block px-4 py-2 hover:bg-teal-100 hover:text-teal-700 rounded-b-lg">Hotlines & Support</a>
+          </li>
+        </ul>
+      </li>
+
+      <li><a href="{% url 'contact' %}" class="hover:text-teal-200">Contact</a></li>
+      <li>
+        <a href="{% url 'logout' %}" class="bg-teal-300 text-white px-4 py-2 rounded-md hover:bg-teal-400 transition">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+  <!-- Mood Tips Section -->
+  <section class="py-16 bg-gray-50 flex-grow">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-12 text-center text-teal-600">Mood Tracking Tips</h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Tip 1 -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">Track Daily</h3>
+          <p class="text-gray-700">Make it a habit to log your mood every day, even if it’s just a word or a short sentence. Consistency helps identify patterns over time.</p>
+        </div>
+
+        <!-- Tip 2 -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">Use a Mood Scale</h3>
+          <p class="text-gray-700">Rate your mood on a scale of 1-10 or use emojis to capture your feelings. This helps quantify changes and track progress.</p>
+        </div>
+
+        <!-- Tip 3 -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">Identify Triggers</h3>
+          <p class="text-gray-700">Note situations, people, or activities that impact your mood positively or negatively. Awareness of triggers allows better emotional management.</p>
+        </div>
+
+        <!-- Tip 4 -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">Reflect and Review</h3>
+          <p class="text-gray-700">Take time weekly to review your mood logs. Look for patterns, improvements, or recurring challenges.</p>
+        </div>
+
+        <!-- Tip 5 -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">Combine with Journaling</h3>
+          <p class="text-gray-700">Writing about your experiences, thoughts, and feelings can provide deeper insight into your emotional state.</p>
+        </div>
+
+        <!-- Tip 6 -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">Set Reminders</h3>
+          <p class="text-gray-700">Use phone alarms or app notifications to remind yourself to log your mood. Small nudges help you stay consistent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-teal-700 text-white py-6 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; {{ year|default:2025 }} MindEase. All rights reserved.</p>
+      <div class="mt-2 space-x-4">
+        <a href="#" class="hover:text-gray-200">Facebook</a>
+        <a href="#" class="hover:text-gray-200">Instagram</a>
+        <a href="#" class="hover:text-gray-200">Twitter</a>
+        <a href="#" class="hover:text-gray-200">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
