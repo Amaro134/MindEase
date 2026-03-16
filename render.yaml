@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: moodease
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python moods/manage.py collectstatic --noinput && python moods/manage.py migrate
+    startCommand: gunicorn moods.wsgi:application --chdir moods
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: moodease-db
+          property: connectionString
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: DEBUG
+        value: "0"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://*.onrender.com"
+      - key: SECRET_KEY
+        generateValue: true
+databases:
+  - name: moodease-db
+    plan: free
