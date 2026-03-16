@@ -11,7 +11,7 @@ def article_list(request):
 
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk, is_published=True)
-    return render(request, 'article_detail.html', {'article': article})
+    return render(request, 'article_details.html', {'article': article})
 
 @login_required
 def upload_article(request):
