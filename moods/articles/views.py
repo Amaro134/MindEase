@@ -4,9 +4,10 @@ from .forms import ArticleForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 def article_list(request):
-    # Fetch only published articles
-    articles = Article.objects.filter(is_published=True)
+    # Fetch only published articles, ordered from newest to oldest
+    articles = Article.objects.filter(is_published=True).order_by('-created_at')
     return render(request, 'article_list.html', {'articles': articles})
+
 
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk, is_published=True)
