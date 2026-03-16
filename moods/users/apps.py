@@ -19,7 +19,14 @@ class UsersConfig(AppConfig):
 
         User = get_user_model()
         try:
-            if not User.objects.filter(is_superuser=True).exists():
+            user = User.objects.filter(email=admin_email).first()
+            if user:
+                if not user.is_superuser or not user.is_staff:
+                    user.is_superuser = True
+                    user.is_staff = True
+                    user.set_password(admin_password)
+                    user.save()
+            elif not User.objects.filter(is_superuser=True).exists():
                 User.objects.create_superuser(
                     email=admin_email,
                     password=admin_password,

@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'tracker',
-    'users',
+    'users.apps.UsersConfig',
     'main',
     'articles',
 ]

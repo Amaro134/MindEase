@@ -68,7 +68,7 @@
             <div>
               <h3 class="text-xl font-semibold mb-2">{{ article.title }}</h3>
               <p class="text-gray-600 text-sm mb-4">
-                By {{ article.author.get_full_name|default:article.author.username }} | {{ article.created_at|date:"M d, Y" }}
+                By {{ article.author.get_full_name|default:article.author.email }} | {{ article.created_at|date:"M d, Y" }}
               </p>
             </div>
             <a href="{% url 'article_detail' article.pk %}" class="mt-auto text-teal-600 font-medium hover:underline">Read more →</a>
