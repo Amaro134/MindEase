@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import FeedbackForm
+from .forms import FeedbackForm, ContactForm
 
 # Create your views here.
 def index(request):
@@ -12,7 +12,14 @@ def about(request):
     return render(request, 'about.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("contact")
+    else:
+        form = ContactForm()
+    return render(request, "contact.html", {"form": form})
 
 def resources(request):
     return render(request, 'resources.html')
