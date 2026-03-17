@@ -8,34 +8,76 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-teal-500/40 selection:text-teal-50">
+
+  <!-- Gradient backdrop -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-32 -left-40 h-72 w-72 rounded-full bg-teal-500/20 blur-3xl"></div>
+    <div class="absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl"></div>
+  </div>
 
   <!-- Navbar -->
-  <nav class="bg-teal-700 text-white shadow-lg">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
-      <a href="{% url 'index' %}" class="font-bold text-2xl">MindEase</a>
-      <ul class="flex space-x-6">
-        <li><a href="{% url 'article_list' %}" class="hover:text-teal-200">← Back to Articles</a></li>
-      </ul>
+  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+      <a href="{% url 'index' %}" class="flex items-center gap-2">
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-teal-500/90 text-sm font-semibold shadow-lg shadow-teal-500/40">
+          ME
+        </span>
+        <span class="text-lg font-semibold tracking-tight text-slate-50">MindEase</span>
+      </a>
+      <a href="{% url 'article_list' %}" class="inline-flex items-center gap-1 rounded-full border border-slate-700 px-4 py-1.5 text-sm font-medium text-slate-100 hover:border-teal-400 hover:text-teal-300 hover:bg-slate-900 transition-colors">
+        <span class="text-base">←</span>
+        Back to articles
+      </a>
     </div>
   </nav>
 
   <!-- Article Detail -->
-  <section class="py-16 bg-white flex-grow">
-    <div class="container mx-auto px-6 max-w-3xl">
-      <h1 class="text-4xl font-bold text-teal-600 mb-4">{{ article.title }}</h1>
-      <p class="text-gray-500 mb-6">By {{ article.author }} · {{ article.created_at|date:"F j, Y" }}</p>
+  <main class="flex-1">
+    <article class="mx-auto max-w-3xl px-4 py-10 md:py-14">
+      <header class="mb-8 md:mb-10">
+        <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-500/50 bg-teal-500/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-teal-200">
+          Mindfulness article
+        </p>
+        <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-50 mb-4">
+          {{ article.title }}
+        </h1>
+        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-400">
+          <div class="flex items-center gap-2">
+            <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold uppercase">
+              {{ article.author.full_name|default:article.author.email|slice:":2" }}
+            </div>
+            <div class="leading-tight">
+              <p class="font-medium text-slate-200">
+                {{ article.author.full_name|default:article.author.email }}
+              </p>
+              <p class="text-xs text-slate-400">
+                Published {{ article.created_at|date:"F j, Y" }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
       {% if article.image %}
-        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="rounded-lg mb-6">
+      <div class="mb-8 overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/60 shadow-xl shadow-black/40">
+        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="h-full w-full max-h-[420px] object-cover">
+      </div>
       {% endif %}
-      <p class="text-gray-800 leading-relaxed">{{ article.content|linebreaks }}</p>
-    </div>
-  </section>
+
+      <section class="prose prose-invert prose-teal max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-a:text-teal-300 hover:prose-a:text-teal-200 prose-blockquote:border-teal-500/60 prose-blockquote:text-teal-50 prose-strong:text-slate-50 prose-img:rounded-xl">
+        {{ article.content|linebreaks }}
+      </section>
+    </article>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-teal-700 text-white py-6">
-    <div class="container mx-auto px-4 text-center">
+  <footer class="border-t border-slate-800/80 bg-slate-950/80 backdrop-blur">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 text-xs text-slate-500">
       <p>&copy; {{ year|default:2025 }} MindEase. All rights reserved.</p>
+      <p class="hidden sm:inline-flex gap-1">
+        Crafted for calm reading.
+      </p>
     </div>
   </footer>
 
