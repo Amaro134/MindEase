@@ -8,6 +8,33 @@
 </head>
 <body class="bg-teal-50 text-gray-800 font-sans">
 
+  {% if messages %}
+  <div id="toast" class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+    <div class="max-w-md rounded-lg bg-white shadow-xl border border-teal-200 px-4 py-3 flex items-start gap-3">
+      <div class="mt-1 h-8 w-8 flex items-center justify-center rounded-full bg-teal-100 text-teal-700">
+        ✓
+      </div>
+      <div>
+        {% for message in messages %}
+          <p class="text-sm font-semibold text-teal-900">{{ message }}</p>
+        {% endfor %}
+        <p class="mt-1 text-xs text-teal-700/80">
+          We’ve received your message and will respond as soon as we can.
+        </p>
+      </div>
+      <button type="button" onclick="document.getElementById('toast').classList.add('hidden')" class="ml-2 text-sm text-gray-400 hover:text-gray-600">
+        ✕
+      </button>
+    </div>
+  </div>
+  <script>
+    setTimeout(function () {
+      const el = document.getElementById('toast');
+      if (el) el.classList.add('hidden');
+    }, 4000);
+  </script>
+  {% endif %}
+
   <!-- Navbar -->
  <nav class="bg-teal-700 text-white shadow-lg">
   <div class="container mx-auto flex justify-between items-center py-4 px-6">

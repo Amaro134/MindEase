@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Messages | MindEase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="{% url 'index' %}" class="flex items-center gap-2">
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-teal-500/90 text-sm font-semibold shadow-lg shadow-teal-500/40">
+          ME
+        </span>
+        <span class="text-lg font-semibold tracking-tight text-slate-50">MindEase</span>
+      </a>
+      <a href="{% url 'contact' %}" class="text-sm text-teal-300 hover:text-teal-200">
+        ← Back to contact
+      </a>
+    </div>
+  </nav>
+
+  <main class="mx-auto max-w-6xl px-4 py-8">
+    <header class="mb-6 flex items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight text-slate-50">Contact messages</h1>
+        <p class="text-sm text-slate-400">All messages submitted via the contact form (newest first).</p>
+      </div>
+      <span class="rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-xs font-medium text-slate-300">
+        Total: {{ messages|length }}
+      </span>
+    </header>
+
+    {% if messages %}
+    <div class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 shadow-xl shadow-black/40">
+      <table class="min-w-full divide-y divide-slate-800 text-sm">
+        <thead class="bg-slate-900/90">
+          <tr>
+            <th class="px-4 py-3 text-left font-semibold text-slate-300">Name</th>
+            <th class="px-4 py-3 text-left font-semibold text-slate-300">Email</th>
+            <th class="px-4 py-3 text-left font-semibold text-slate-300">Message</th>
+            <th class="px-4 py-3 text-left font-semibold text-slate-300">Submitted at</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/80">
+          {% for m in messages %}
+          <tr class="hover:bg-slate-800/60">
+            <td class="px-4 py-3 align-top text-slate-100">{{ m.name }}</td>
+            <td class="px-4 py-3 align-top text-teal-300">
+              <a href="mailto:{{ m.email }}" class="hover:underline">{{ m.email }}</a>
+            </td>
+            <td class="px-4 py-3 align-top text-slate-200 max-w-xl">
+              <p class="whitespace-pre-line">{{ m.message }}</p>
+            </td>
+            <td class="px-4 py-3 align-top text-slate-400 text-xs">
+              {{ m.submitted_at|date:"Y-m-d H:i" }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="mt-10 text-center text-slate-400">No contact messages have been submitted yet.</p>
+    {% endif %}
+  </main>
+
+</body>
+</html>
+
